@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from os import environ as env
+from os import path, environ as env
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -25,10 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = env.get("SECRET_KEY")
 
-DEBUG = env.get("DEBUG") == '1'
+DEBUG = env.get("DEBUG") == "1"
 
 ALLOWED_HOSTS = ["localhost"]
 
+STATIC_URL = "/static/"
+STATIC_ROOT = path.join(BASE_DIR, "static")
 
 # Application definition
 

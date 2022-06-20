@@ -8,6 +8,8 @@ django = "*"
 python-dotenv = "*"
 gunicorn = "*"
 dj-static = "*"
+dj-database-url = "*"
+mysqlclient = "*"
 
 [dev-packages]
 mypy = "*"

@@ -1,10 +1,10 @@
 import React from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
+import App from "./app";
 import "./index.css";
 
-render(
+createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <h1>Hello</h1>
-  </React.StrictMode>,
-  document.getElementById("root")
+    <App />
+  </React.StrictMode>
 );

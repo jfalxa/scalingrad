@@ -1,1 +1,1 @@
-web: bash start-prod.sh
+web: bash bin/start-prod.sh

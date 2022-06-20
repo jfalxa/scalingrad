@@ -27,7 +27,7 @@ SECRET_KEY = env.get("SECRET_KEY")
 
 DEBUG = env.get("DEBUG") == "1"
 
-ALLOWED_HOSTS = env.get("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.get("ALLOWED_HOSTS", "").split(",")
 
 STATIC_URL = "/static/"
 STATIC_ROOT = path.join(BASE_DIR, "static")

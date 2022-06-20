@@ -11,8 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from os import environ as env
+from dotenv import load_dotenv
 from pathlib import Path
 import dj_database_url
+
+# load local .env file
+load_dotenv()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

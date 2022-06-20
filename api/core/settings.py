@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 SECRET_KEY = env["SECRET_KEY"]
-DEBUG = env["DEBUG"] == "1"
+DEBUG = env.get("DEBUG", "0") == "1"
 ALLOWED_HOSTS = env.get("ALLOWED_HOSTS", "").split(",")
 
 

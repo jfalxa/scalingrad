@@ -74,11 +74,9 @@ CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-try:
-    DATABASE_URL = env["DATABASE_URL"]
-    DATABASES = {"default": dj_database_url.config()}
-except KeyError:
-    DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "db.sqlite3"}}
+DATABASE_URL = env["DATABASE_URL"]
+DATABASES = {"default": dj_database_url.config()}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

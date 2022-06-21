@@ -11,18 +11,12 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from os import environ as env
-from dotenv import load_dotenv
 from pathlib import Path
 import dj_database_url
 
 
-# load local .env file
-load_dotenv()
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-FRONTEND_DIR = BASE_DIR.parent / "web"
 
 
 # Quick-start development settings - unsuitable for production
@@ -59,7 +53,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [FRONTEND_DIR],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -119,7 +113,6 @@ USE_TZ = True
 
 STATIC_ROOT = "static"
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [FRONTEND_DIR / "dist"]
 
 
 # Default primary key field type

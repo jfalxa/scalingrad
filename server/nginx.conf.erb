@@ -1,11 +1,9 @@
 # redirect to frontend prod server
 location / {
   proxy_pass <%= ENV["FRONTEND_URL"] %>;
-  proxy_set_header Host $host;
 }
 
 # redirect to backend prod server
 location /api {
   proxy_pass <%= ENV["BACKEND_URL"] %>;
-  proxy_set_header Host $host;
 }

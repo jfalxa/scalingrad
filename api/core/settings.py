@@ -25,7 +25,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env["SECRET_KEY"]
 DEBUG = env.get("DEBUG", "0") == "1"
 ALLOWED_HOSTS = env.get("ALLOWED_HOSTS", "").split(",")
-# FORCE_SCRIPT_NAME = "/api"
 
 
 # Application definition

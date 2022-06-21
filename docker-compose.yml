@@ -1,0 +1,78 @@
+version: "3.5"
+
+services:
+  api:
+    environment:
+      - HOST=${HOST}
+      - DEBUG=${DEBUG}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - DATABASE_URL=mysql://${DATABASE_USER}:${DATABASE_PASSWORD}@database/${DATABASE_NAME}
+    build:
+      context: ./api
+      target: ${TARGET:-dev}
+    container_name: api
+    image: api:latest
+    volumes:
+      - ./api:/app
+    expose:
+      - 8000
+    networks:
+      - network
+    depends_on:
+      - database
+
+  web:
+    build:
+      context: ./web
+      target: ${TARGET:-dev}
+      args:
+        - HOST=${HOST}
+    container_name: web
+    image: web:latest
+    volumes:
+      - ./web:/app
+    expose:
+      - 3000
+    networks:
+      - network
+
+  database:
+    image: mariadb:latest
+    restart: always
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - database:/var/lib/mysql
+    expose:
+      - 3306
+    networks:
+      - network
+
+  server:
+    environment:
+      - HOST=${HOST}
+    build:
+      context: ./server
+      target: ${TARGET:-dev}
+    container_name: server
+    image: server:latest
+    ports:
+      - 8000:80
+    networks:
+      - network
+    depends_on:
+      - api
+      - web
+
+volumes:
+  database:
+    name: database
+
+networks:
+  network:
+    name: network

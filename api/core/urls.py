@@ -20,9 +20,7 @@ from core import views
 
 urlpatterns = [
     # admin interface
-    path("admin/", admin.site.urls),
-    # frontend
-    path("", views.index),
+    path("api/admin/", admin.site.urls),
     # api endpoints
     path("api/", views.root),
 ]

@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env["SECRET_KEY"]
 DEBUG = env.get("DEBUG", "0") == "1"
 ALLOWED_HOSTS = env.get("ALLOWED_HOSTS", "").split(",")
+# FORCE_SCRIPT_NAME = "/api"
 
 
 # Application definition
@@ -68,17 +69,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
+
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 try:
-    database_url = env["DATABASE_URL"]
+    DATABASE_URL = env["DATABASE_URL"]
+    DATABASES = {"default": dj_database_url.config()}
 except KeyError:
-    database_url = "file:///{}".format(BASE_DIR / "db.sqlite3")
-
-DATABASES = {"default": dj_database_url.config()}
-
+    DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "db.sqlite3"}}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -112,7 +113,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_ROOT = "static"
-STATIC_URL = "/static/"
+STATIC_URL = "api/static/"
 
 
 # Default primary key field type

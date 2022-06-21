@@ -19,7 +19,8 @@ const App = () => {
   }, []);
 
   if (loading) return <i>Loading...</i>;
-  else return <code>{JSON.stringify(data, undefined, "  ")}</code>;
+
+  return <code className="app">{JSON.stringify(data, undefined, "  ")}</code>;
 };
 
 export default App;

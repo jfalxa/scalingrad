@@ -1,10 +1,5 @@
-from django.http import HttpRequest, HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.http import JsonResponse
 
 
-def index(request: HttpRequest) -> HttpResponse:
-    return render(request, "dist/index.html")
-
-
-def root(_) -> JsonResponse:
+def root(_):
     return JsonResponse({"message": "Welcome"})

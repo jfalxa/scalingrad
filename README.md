@@ -12,15 +12,11 @@ You can now access the app at http://localhost:8000
 
 ### Frontend
 
-To avoid errors in your local environment:
-
 - Install nodejs on your system
 - Run `cd web`
 - Run `npm install`
 
 ### API
-
-To avoid errors in your local environment:
 
 - Install python and pipenv on your system
 - Install mariadb/mysql client lib on your system
